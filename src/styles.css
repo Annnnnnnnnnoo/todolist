@@ -1,0 +1,223 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --text: #f2f2f7;
+  --text-dim: rgba(242, 242, 247, 0.55);
+  --accent: #7c9cff;
+  --danger: #ff6b6b;
+  --card-bg: rgba(26, 27, 34, 0.5);
+  --border: rgba(255, 255, 255, 0.12);
+}
+
+html,
+body {
+  height: 100%;
+  background: transparent;
+  overflow: hidden;
+}
+
+body {
+  font-family: "Segoe UI", "Microsoft YaHei", -apple-system, sans-serif;
+  color: var(--text);
+  font-size: 14px;
+  -webkit-font-smoothing: antialiased;
+  user-select: none;
+  padding: 12px;
+}
+
+/* 磨砂卡片：半透明背景 + 系统亚克力模糊（由 Rust 侧应用） */
+.card {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  border-radius: 18px;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
+  overflow: hidden;
+}
+
+/* ===== 头部 ===== */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px 10px;
+  cursor: grab;
+}
+
+.header__title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.header__dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 8px var(--accent);
+}
+
+.header__count {
+  font-size: 12px;
+  color: var(--text-dim);
+  background: rgba(255, 255, 255, 0.1);
+  padding: 2px 8px;
+  border-radius: 10px;
+}
+
+.header__close {
+  width: 24px;
+  height: 24px;
+  border: none;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--text-dim);
+  font-size: 16px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+/* ===== 输入区 ===== */
+.add {
+  padding: 4px 12px 10px;
+}
+
+.add__input {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--text);
+  font-size: 14px;
+  outline: none;
+  user-select: text;
+}
+
+.add__input::placeholder {
+  color: var(--text-dim);
+}
+
+.add__input:focus {
+  border-color: var(--accent);
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* ===== 列表 ===== */
+.list {
+  flex: 1;
+  overflow-y: auto;
+  list-style: none;
+  padding: 0 10px 10px;
+}
+
+.list::-webkit-scrollbar {
+  width: 6px;
+}
+
+.list::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 3px;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 8px;
+  border-radius: 10px;
+  cursor: grab;
+}
+
+.item:hover {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.item:active {
+  cursor: grabbing;
+}
+
+/* 拖动排序：进行中/落点指示 */
+.item.is-dragging {
+  opacity: 0.4;
+}
+
+.item.drop-before {
+  box-shadow: 0 -2px 0 var(--accent);
+}
+
+.item.drop-after {
+  box-shadow: 0 2px 0 var(--accent);
+}
+
+.item:hover .item__del {
+  opacity: 1;
+}
+
+.item__check {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.35);
+  background: transparent;
+  color: transparent;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  font-size: 12px;
+  transition: all 0.15s;
+}
+
+.item--done .item__check {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+
+.item__text {
+  flex: 1;
+  font-size: 14px;
+  word-break: break-all;
+  user-select: text;
+}
+
+.item--done .item__text {
+  color: var(--text-dim);
+  text-decoration: line-through;
+}
+
+.item__del {
+  width: 24px;
+  height: 24px;
+  border: none;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--text-dim);
+  font-size: 16px;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.15s;
+}
+
+.item__del:hover {
+  color: var(--danger);
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* ===== 空状态 ===== */
+.empty {
+  padding: 20px;
+  text-align: center;
+  color: var(--text-dim);
+  font-size: 13px;
+}

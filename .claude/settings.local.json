@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(SRC=\"/c/Users/LMY2023/.cargo/registry/src/mirrors.aliyun.com-0671735e7cc7f5e7\"; echo \"=== config 里的 effects 字段 ===\"; grep -n \"effects\\\\|Effects\" $SRC/tauri-utils-2.9.3/src/config.rs 2>/dev/null | head -15; echo \"=== tauri 的 WindowEffects ===\"; grep -rn \"pub enum Effects\\\\|pub enum EffectState\\\\|Acrylic\\\\|Mica\" $SRC/tauri-2.11.5/src/window/mod.rs 2>/dev/null | head -15)",
+      "Read(//c/Users/LMY2023/.cargo/registry/src/mirrors.aliyun.com-0671735e7cc7f5e7/tauri-utils-2.9.3/src/**)",
+      "Bash(SRC=\"/c/Users/LMY2023/.cargo/registry/src/mirrors.aliyun.com-0671735e7cc7f5e7\"; echo \"=== tauri 主 crate 搜 window_effects ===\"; grep -rn \"window_effects\" $SRC/tauri-2.11.5/src/ 2>/dev/null | head -10; echo \"=== tauri-runtime trait 里的 WindowEffects ===\"; grep -rln \"WindowEffects\\\\|window_effects\\\\|set_effects\" $SRC/tauri-runtime-2.11.3/src/ 2>/dev/null | head)",
+      "Read(//c/Users/LMY2023/.cargo/registry/src/mirrors.aliyun.com-0671735e7cc7f5e7/tauri-2.11.5/src//**)"
+    ]
+  }
+}

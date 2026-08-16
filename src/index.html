@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>待办清单</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="card">
+      <!-- 头部：整块作为窗口拖拽区 -->
+      <header class="header" data-tauri-drag-region="deep">
+        <div class="header__title">
+          <span class="header__dot"></span>
+          <span>待办清单</span>
+          <span class="header__count" id="count">0/0</span>
+        </div>
+        <button class="header__close" id="close" title="退出" aria-label="退出">×</button>
+      </header>
+
+      <form class="add" id="add-form">
+        <input
+          class="add__input"
+          id="add-input"
+          type="text"
+          placeholder="添加待办，回车确认…"
+          autocomplete="off"
+          spellcheck="false"
+        />
+      </form>
+
+      <ul class="list" id="list"></ul>
+      <p class="empty" id="empty">还没有待办，输入一条吧 ✨</p>
+    </div>
+
+    <script type="module" src="./main.js"></script>
+  </body>
+</html>
